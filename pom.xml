@@ -51,13 +51,13 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- /Provided Dependencies -->
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+		<!-- /Provided Dependencies -->
 
 		<!-- Snow -->
 		<dependency>

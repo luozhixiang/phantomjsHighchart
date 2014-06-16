@@ -31,10 +31,10 @@
 	  			<label>Start phantomjs </label>
 	  			<button class="btn btn-primary phantomjsBtn" data-value="start">Start</button>
 			</div>
-  			<!--div class="part">
+  			<div class="part">
 	  			<label>Close phantomjs </label>
 	  			<button class="btn btn-primary phantomjsBtn" data-value="close" >close</button>
-			</div-->
+			</div>
   			<div class="report-data-loading">
 	          	<div>
 	          		<span class="loading-data-gif">&nbsp;</span><span>Loading data...</span>

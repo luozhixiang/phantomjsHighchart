@@ -92,12 +92,12 @@ pick = function () {
 		
 		
 		
-		page.open("http://www.baidu.com", function (status) {	
+		page.open(params.address, function (status) {	
         	if (status !== 'success') {
 				phantom.exit();
         	} else {
             window.setTimeout(function () {
-                page.render("baidu.png");
+                page.render(params.output);
 				if (serverMode) {
 				page.close();
 			}
@@ -148,8 +148,6 @@ startServer = function (host, port) {
 
 		console.log("OK, PhantomJS is ready.");
 	};
-
-	
 	
 	args = mapCLArguments();
 
@@ -162,6 +160,4 @@ startServer = function (host, port) {
 			phantom.exit();
 		});
 	}
-	
-
 }());

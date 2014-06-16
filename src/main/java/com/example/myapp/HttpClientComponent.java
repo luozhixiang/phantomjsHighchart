@@ -9,7 +9,7 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpClientComponent {
 
-    public String sendRequest(byte[] bs,String url) throws Exception {
+    public String sendRequest(byte[] bs, String url) throws Exception {
         DefaultHttpClient client = new DefaultHttpClient();
 
         try {
@@ -36,8 +36,10 @@ public class HttpClientComponent {
             client.getConnectionManager().shutdown();
         }
     }
-    
+
 //    public static void main(String[] args) throws Exception {
-//        new HttpClientComponent().sendRequest("{\"buildChart\":\"{series:[{data:[29.9,71.5,106.4]}]}\"}".getBytes(), "http://127.0.0.1:3003");
+//        new HttpClientComponent().sendRequest("{\"output\": [\"baidu.png\"],\"address\": [\"http://www.baidu.com/\"]}".getBytes(), "http://127.0.0.1:3003");
+//        // new HttpClientComponent().sendRequest("{\"buildChart\":\"{outfile:[{data:[\"baidu.png\"]}],}\"}".getBytes(),
+//        // "http://127.0.0.1:3003");
 //    }
 }

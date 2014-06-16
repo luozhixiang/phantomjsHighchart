@@ -6,7 +6,6 @@ import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-
 //import com.strongview.phantomview.PhantomRun;
 
 @Singleton
@@ -19,30 +18,43 @@ public class CommonWebHandlers {
 
     @Inject
     @Named("myApp.phantomjsPath")
-    private String phantomjsPath;
+    private String     phantomjsPath;
 
     @Inject
     @Named("myApp.jsPath")
-    private String jsPath;
+    private String     jsPath;
 
     @Inject
     @Named("myApp.ip")
-    private String ip;
+    private String     ip;
 
     @Inject
     @Named("myApp.port")
-    private String port;
+    private String     port;
+    
+    @Inject
+    @Named("myApp.outputSuffix")
+    private String     outputSuffix;
+    
+    @Inject
+    @Named("myApp.outputName")
+    private String     outputName;
+
+    @Inject
+    @Named("myApp.visitAddress")
+    private String     visitAddress;
+    
+    private PhantomRun phantomRun = new PhantomRun();
 
     @WebPost("/doServer")
     public WebResponse createServer(@WebParam("oper") String oper, RequestContext rc) {
         String result = null;
         try {
-            PhantomRun phantomRun = new PhantomRun();
-            // if ("start".equals(oper)) {
-            result = phantomRun.startPhantomjs(phantomjsPath, jsPath + "buildPhantomjs.js", ip, port);
-            // } else {
-            // result = phantomRun.stopPhantomjs();
-            // }
+            if ("start".equals(oper)) {
+                result = phantomRun.startPhantomjs(phantomjsPath, jsPath + "buildPhantomjs.js", ip, port);
+            } else {
+                result = phantomRun.stopPhantomjs();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             throw new IllegalStateException("Cannot execute script " + jsPath + "buildPhantomjs.js", e);
@@ -61,10 +73,12 @@ public class CommonWebHandlers {
             stringBuilder.append(ip);
             stringBuilder.append(":");
             stringBuilder.append(port);
-            result = httpClientComponent.sendRequest("{\"buildChart\":\"{series:[{data:[29.9,71.5,106.4]}]}\"}".getBytes(), stringBuilder.toString());
+            String params =  "{\"output\": [\""+outputName+"."+outputSuffix+"\"],\"address\": [\""+visitAddress+"\"]}";
+            result = httpClientComponent.sendRequest(params.getBytes(), stringBuilder.toString());
         } catch (Exception e) {
+            result = "ERROR";
             e.printStackTrace();
-            throw new IllegalStateException("Cannot execute script ", e);
+//            throw new IllegalStateException("Cannot execute script ", e);
         }
 
         return WebResponse.success(result);

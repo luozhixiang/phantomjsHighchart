@@ -47,8 +47,8 @@
 	  			<button class="btn btn-primary exportChartBtn" >Export Chart</button>
 			</div>
   			<div class="part">
-	  			<label class="status success">The image of report generate success!</label>
-	  			<label class="status failure">The image of report generate failure!</label>
+	  			<label class="status success">success!</label>
+	  			<label class="status failure">failure!</label>
   			</div>
   			<div class="report-data-loading">
 	          	<div>

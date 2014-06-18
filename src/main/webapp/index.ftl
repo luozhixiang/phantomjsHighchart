@@ -29,11 +29,11 @@
   	<div id="content">
   			<div class="part">
 	  			<label>Start phantomjs </label>
-	  			<button class="btn btn-primary phantomjsBtn" data-value="start">Start</button>
+	  			<button class="btn btn-primary phantomjsBtn startBtn " data-value="start">Start</button>
 			</div>
   			<div class="part">
 	  			<label>Close phantomjs </label>
-	  			<button class="btn btn-primary phantomjsBtn" data-value="close" >close</button>
+	  			<button class="btn btn-primary phantomjsBtn closeBtn" data-value="close" disabled="disabled">close</button>
 			</div>
   			<div class="report-data-loading">
 	          	<div>
@@ -82,6 +82,13 @@
 					if(val.result == "SUCCESS"){
 						$(".success").show();
 						$(".failure").hide();
+						if(oper == 'start'){
+							$(".startBtn").attr("disabled", true);
+							$(".closeBtn").removeAttr("disabled");
+						}else{
+							$(".closeBtn").attr("disabled", true);
+							$(".startBtn").removeAttr("disabled");
+						}
 					}else{
 						$(".success").hide();
 						$(".failure").show();

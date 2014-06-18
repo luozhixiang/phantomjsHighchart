@@ -29,9 +29,8 @@
 		dpiCorrection = 1.4,
 		system = require('system'),
 		serverMode = false;
-
 		
-pick = function () {
+	pick = function () {
 		var args = arguments, i, arg, length = args.length;
 		for (i = 0; i < length; i += 1) {
 			arg = args[i];
@@ -41,11 +40,10 @@ pick = function () {
 		}
 	};
 		
-		mapCLArguments = function () {
+	mapCLArguments = function () {
 		var map = {},
 			i,
 			key;
-
 
 		for (i = 0; i < system.args.length; i += 1) {
 			if (system.args[i].charAt(0) === '-') {
@@ -58,40 +56,16 @@ pick = function () {
 		
 	render = function (params, exitCallback) {
 	var page = require('webpage').create(),messages = {};
-	messages.imagesLoaded = 'Highcharts.images.loaded';
-		messages.optionsParsed = 'Highcharts.options.parsed';
-		messages.callbackParsed = 'Highcharts.cb.parsed';
-		window.imagesLoaded = false;
-		window.optionsParsed = false;
-		window.callbackParsed = false;
 
 		page.onConsoleMessage = function (msg) {
 			console.log(msg);
-
-			/*
-			 * Ugly hack, but only way to get messages out of the 'page.evaluate()'
-			 * sandbox. If any, please contribute with improvements on this!
-			 */
-
-			if (msg === messages.imagesLoaded) {
-				window.imagesLoaded = true;
-			}
-			/* more ugly hacks, to check options or callback are properly parsed */
-			if (msg === messages.optionsParsed) {
-				window.optionsParsed = true;
-			}
-
-			if (msg === messages.callbackParsed) {
-				window.callbackParsed = true;
-			}
 		};
 
 		page.onAlert = function (msg) {
 			//console.log(msg);
 		};
 		
-		
-		
+		//visit the web and sreacn the image into the local
 		page.open(params.address, function (status) {	
         	if (status !== 'success') {
 				phantom.exit();
@@ -99,18 +73,19 @@ pick = function () {
             window.setTimeout(function () {
                 page.render(params.output);
 				if (serverMode) {
-				page.close();
-			}
+					page.close();
+				}
+			//return response to java server 	
 			exitCallback("success");
                 //phantom.exit();
-            }, 500);
+            	}, 500);
         	}
    		 });
 		
 	};
 
 
-
+//start a phantomjs server
 startServer = function (host, port) {
 		var server = require('webserver').create();
 
@@ -145,7 +120,6 @@ startServer = function (host, port) {
 
 		// switch to serverMode
 		serverMode = true;
-
 		console.log("OK, PhantomJS is ready.");
 	};
 	

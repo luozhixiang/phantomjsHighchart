@@ -27,11 +27,11 @@
   <body>
   	<div id="bodyPage">
   	<div id="content">
-  			<div class="part">
+  			<div class="part" style="display:none">
 	  			<label>Start phantomjs </label>
 	  			<button class="btn btn-primary phantomjsBtn startBtn " data-value="start">Start</button>
 			</div>
-  			<div class="part">
+  			<div class="part"  style="display:none">
 	  			<label>Close phantomjs </label>
 	  			<button class="btn btn-primary phantomjsBtn closeBtn" data-value="close" disabled="disabled">close</button>
 			</div>

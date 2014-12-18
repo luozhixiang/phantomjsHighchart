@@ -6,6 +6,7 @@ import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+
 //import com.strongview.phantomview.PhantomRun;
 
 @Singleton
@@ -31,11 +32,11 @@ public class CommonWebHandlers {
     @Inject
     @Named("myApp.port")
     private String     port;
-    
+
     @Inject
     @Named("myApp.outputSuffix")
     private String     outputSuffix;
-    
+
     @Inject
     @Named("myApp.outputName")
     private String     outputName;
@@ -43,8 +44,24 @@ public class CommonWebHandlers {
     @Inject
     @Named("myApp.visitAddress")
     private String     visitAddress;
-    
+
+    @Inject
+    @Named("myApp.visitUri")
+    private String     visitUri;
+
     private PhantomRun phantomRun = new PhantomRun();
+
+    @WebPost("/exportChart")
+    public WebResponse exportChart(@WebParam("type") String type, RequestContext rc) {
+        String result = null;
+        try {
+            result = phantomRun.exportChart(phantomjsPath, jsPath + "/overview-summary-all.js", visitAddress, visitUri, outputName, type);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Cannot execute script " + jsPath + "/overview-summary-all.js", e);
+        }
+        return WebResponse.success(result);
+    }
 
     @WebPost("/doServer")
     public WebResponse createServer(@WebParam("oper") String oper, RequestContext rc) {
@@ -63,8 +80,8 @@ public class CommonWebHandlers {
         return WebResponse.success(result);
     }
 
-    @WebPost("/exportChart")
-    public WebResponse exportChart(@WebParam("type") String type, RequestContext rc) {
+    @WebPost("/exportChart2")
+    public WebResponse exportChart2(@WebParam("type") String type, RequestContext rc) {
         String result = null;
         try {
             HttpClientComponent httpClientComponent = new HttpClientComponent();
@@ -73,15 +90,19 @@ public class CommonWebHandlers {
             stringBuilder.append(ip);
             stringBuilder.append(":");
             stringBuilder.append(port);
-            String params =  "{\"output\": [\""+outputName+"."+outputSuffix+"\"],\"address\": [\""+visitAddress+"\"]}";
+            String params = "{\"output\": [\"" + outputName
+                                    + "."
+                                    + outputSuffix
+                                    + "\"],\"address\": [\""
+                                    + visitAddress
+                                    + "\"]}";
             result = httpClientComponent.sendRequest(params.getBytes(), stringBuilder.toString());
         } catch (Exception e) {
             result = "ERROR";
             e.printStackTrace();
-//            throw new IllegalStateException("Cannot execute script ", e);
+            // throw new IllegalStateException("Cannot execute script ", e);
         }
 
         return WebResponse.success(result);
     }
-
 }

@@ -13,9 +13,7 @@ public class PhantomRun {
         List<String> paramList = new LinkedList<String>();
         paramList.add(phantomjsPath);
         paramList.add(jsFilePath);
-        paramList.add("-host");
         paramList.add(ip);
-        paramList.add("-port");
         paramList.add(port);
 
         StringBuilder stringBuilder = null;

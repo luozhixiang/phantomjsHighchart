@@ -51,13 +51,13 @@ public class CommonWebHandlers {
         String result = null;
         try {
             if ("start".equals(oper)) {
-                result = phantomRun.startPhantomjs(phantomjsPath, jsPath + "buildPhantomjs.js", ip, port);
+                result = phantomRun.startPhantomjs(phantomjsPath, jsPath + "server.js", ip, port);
             } else {
                 result = phantomRun.stopPhantomjs();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new IllegalStateException("Cannot execute script " + jsPath + "buildPhantomjs.js", e);
+            throw new IllegalStateException("Cannot execute script " + jsPath + "server.js", e);
         }
 
         return WebResponse.success(result);

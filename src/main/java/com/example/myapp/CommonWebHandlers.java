@@ -1,7 +1,12 @@
 package com.example.myapp;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+
 import com.britesnow.snow.web.RequestContext;
 import com.britesnow.snow.web.param.annotation.WebParam;
+import com.britesnow.snow.web.rest.annotation.WebGet;
 import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -51,14 +56,27 @@ public class CommonWebHandlers {
 
     private PhantomRun phantomRun = new PhantomRun();
 
-    @WebPost("/exportChart")
-    public WebResponse exportChart(@WebParam("type") String type, RequestContext rc) {
+    @WebGet("/exportChart")
+    public WebResponse exportChart(@WebParam("json") String json, RequestContext rc) {
         String result = null;
         try {
-            result = phantomRun.exportChart(phantomjsPath, jsPath + "/overview-summary-all.js", visitAddress, visitUri, outputName, type);
+            result = phantomRun.exportChart(phantomjsPath, jsPath + "/pjs.js", visitAddress, visitUri + "?json=" + json, outputName + File.separatorChar
+                                    + json
+                                    + ".png", json);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new IllegalStateException("Cannot execute script " + jsPath + "/overview-summary-all.js", e);
+            throw new IllegalStateException("Cannot execute script " + jsPath + "/pjs.js", e);
+        }
+        return WebResponse.success(result);
+    }
+
+    @WebPost("/getReportData")
+    public WebResponse getReportData(@WebParam("json") String json, RequestContext rc) {
+        String result = null;
+        try {
+            result = FileUtils.readFileToString(new File(jsPath + File.separatorChar + json));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return WebResponse.success(result);
     }

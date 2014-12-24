@@ -8,12 +8,12 @@
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/css/imports-all.less.css">
     
+    
     <script type="text/javascript">
         var contextPath = "${_r.contextPath}";
     </script>
     
     [@webBundle path="/js/" type="js" /]
-    
     
     [#-- Global Initialization --] 
     <script type="text/javascript">
@@ -26,6 +26,14 @@
 
   <body>
   	<div id="bodyPage">
+  	
+  	<div class="sectionOverviewSummary">
+		<div class="sectionOverviewSummary-chart">
+			<div class="chart-content"></div>
+		</div>
+	</div>
+  	
+  	
   	<div id="content">
   			<div class="part" style="display:none">
 	  			<label>Start phantomjs </label>
@@ -41,7 +49,7 @@
 			  	</div>
 		   </div>
   		</div>
-  		<div id="content">
+  		<div id="content" " style="display:none">
   			<div class="part">
 	  			<label>Report Type: Batch -> Section: Overview -> View: Summary -> All page </label>
 	  			<button class="btn btn-primary exportChartBtn" >Export Chart</button>

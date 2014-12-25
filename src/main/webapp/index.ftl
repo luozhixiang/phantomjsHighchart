@@ -6,7 +6,6 @@
     
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="${_r.contextPath}/css/imports-all.less.css">
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/css/all.css">
     
     
@@ -57,7 +56,7 @@
   </head>
 
   <body>
-  	<div id="bodyPage">
+  	<div id="bodyPage" class="sectionOverview">
   	
   	<div class="sectionOverviewSummary">
 		<div class="sectionOverviewSummary-chart">
@@ -81,7 +80,7 @@
 	</div>
   	
   	
-  	<div id="content">
+  	<div id="content" style="display:none">
   			<div class="part" style="display:none">
 	  			<label>Start phantomjs </label>
 	  			<button class="btn btn-primary phantomjsBtn startBtn " data-value="start">Start</button>
@@ -92,7 +91,6 @@
 			</div>
   			<div class="report-data-loading">
 	          	<div>
-	          		<span class="loading-data-gif">&nbsp;</span><span>Loading data...</span>
 			  	</div>
 		   </div>
   		</div>
@@ -107,7 +105,6 @@
   			</div>
   			<div class="report-data-loading">
 	          	<div>
-	          		<span class="loading-data-gif">&nbsp;</span><span>Loading data...</span>
 			  	</div>
 		   </div>
   		</div>

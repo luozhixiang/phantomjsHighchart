@@ -7462,6 +7462,8 @@
   background-image: -moz-linear-gradient(top, #b7e7f6, #38aacd 50%, #b7e7f6);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b7e7f6', endColorstr='#b7e7f6');
   border: 1px solid #0e9ac5;
+  background:none;
+  border:none;
 }
 .has-canvas .sectionOverview .sectionOverviewSummary .sectionOverviewSummary-summary table td .funnel-bar .bar {
   filter: none;

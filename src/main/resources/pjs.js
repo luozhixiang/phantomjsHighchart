@@ -38,7 +38,7 @@ page.open(url + uri, function() {
 
 		waitFor(function() {
 			return page.evaluate(function() {
-				return $("#bodyPage").length > 0;
+				return $("#bodyPage").attr("load") == "true";
 			});
 		}, function() {
 			window.setTimeout(function() {

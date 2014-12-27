@@ -272,7 +272,7 @@ function showBottomSummaryPart(by, data, reportType) {
 				$table.append($tr);
 				barBreak = true;
 			}
-			if (reportType == smr.REPORT_TYPE.BATCH || reportType == smr.REPORT_TYPE.PROGRAM) {
+			if (reportType == 'BATCH' || reportType == 'PROGRAM') {
 				if (!rateBreak && summaryObj.label == "Unsub") {
 					// brite.log.info(summaryObj);
 					var $tr = smr.render("tmpl-sectionOverviewSummary-summary-breakTr-tr", {});
@@ -643,9 +643,9 @@ function getTableData(data, reportType) {
 	}
 
 	var tableNames = batchTableNames;
-	if (reportType == smr.REPORT_TYPE.TRANSACTIONAL) {
+	if (reportType == 'TRANSACTIONAL') {
 		tableNames = transactionalTableNames;
-	} else if (reportType == smr.REPORT_TYPE.PROGRAM) {
+	} else if (reportType == 'PROGRAM') {
 		tableNames = programTableNames;
 	}
 
@@ -660,7 +660,7 @@ function getTableData(data, reportType) {
 				summaryObj.count = "";
 				summaryObj.value = smr.checkNumber(obj.uniqueRate);
 			} else {
-				if (reportType == smr.REPORT_TYPE.BATCH) {
+				if (reportType == 'BATCH') {
 					obj = data[objName];
 					if (obj && obj.unique) {
 						summaryObj.count = smr.formatNumber(obj.unique);

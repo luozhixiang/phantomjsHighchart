@@ -44,12 +44,12 @@ public class TestPJS {
 
     public static void main(String[] args) {
         try {
-            String phantomjsPath = "/Users/south/WORK/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
-            String pjsPath = "/Users/south/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/pjs.js";
+            String phantomjsPath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
+            String pjsPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/pjs.js";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
             String visitUri = "/";
-            String imageSavePath = "/Users/south/WORK/tool/phantomjs-1.9.8-macosx/bin/a.png";
-            String jsonPath = "/Users/south/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/transactionalsummary.json";
+            String imageSavePath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/a.png";
+            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/transactionalsummary.json";
             String reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
             // Transactional : Transactional Mailing Report :<Report Name>
             // Program :Lifecycle Program Report :<Reprort Name>

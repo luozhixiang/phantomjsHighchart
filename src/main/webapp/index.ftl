@@ -5,7 +5,6 @@
     <title>Phantomjs Snow</title>
     
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/css/all.css">
     
     
@@ -26,25 +25,19 @@
 	</script>
 
 	<script type="text/javascript" src="${_r.contextPath}/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/jquery.render.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/jquery.dragsort.min.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/jquery.sparkline.min.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/handlebars.runtime-v1.3.0.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/handlebars.custom.helper.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/handlebars.common.helper.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/1_brite.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/4_purl.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/brite.gtx.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/smr.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/smr.utils.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/smr.state.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/smr.mailings.js"></script>
-	<script type="text/javascript" src="${_r.contextPath}/js/smr.period.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/highcharts.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/templates.js"></script>
     
     <script type="text/javascript" src="${_r.contextPath}/js/app.js"></script>
     <script type="text/javascript" src="${_r.contextPath}/js/report.js"></script>
+    
     
     [#-- Global Initialization --] 
     <script type="text/javascript">

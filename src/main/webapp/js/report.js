@@ -703,8 +703,7 @@ function getTableData(data, reportType) {
 }
 
 $(function() {
-	var url = $.url();
-	var json = url.param('json') || "getBatchSummary-breakdownbyday1.jso";
+	var json = "getBatchSummary-breakdownbyday1.jso";
 	app.ajaxRequest(app.host + "/getReportData", {
 		json : json
 	}, "POST").pipe(function(val) {

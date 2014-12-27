@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 function showSummaryChartPart(by, data, reportType) {
+=======
+function showSummaryChartPart(by, data) {
+>>>>>>> FETCH_HEAD
 	console.log(data)
 	var $e = $("#bodyPage");
 	var $container = $e.find(".sectionOverviewSummary-chart .chart-content");
@@ -42,6 +46,7 @@ function showSummaryChartPart(by, data, reportType) {
 		};
 
 		var categories = [];
+<<<<<<< HEAD
 		if (reportType == smr.REPORT_TYPE.BATCH) {
 			for (var i = 0; i < data.length; i++) {
 				categories.push(data[i].date);
@@ -59,6 +64,25 @@ function showSummaryChartPart(by, data, reportType) {
 				failedObj.data.push(smr.checkNumber(data[i].failed.count));
 			}
 		}
+=======
+		// if (view.reportType == smr.REPORT_TYPE.BATCH) {
+		for (var i = 0; i < data.length; i++) {
+			categories.push(data[i].date);
+			openObj.data.push(smr.checkNumber(data[i].opens.uniqueRate));
+			clickObj.data.push(smr.checkNumber(data[i].clicks.uniqueRate));
+			deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
+			failedObj.data.push(smr.checkNumber(data[i].failed.count));
+		}
+		// } else {
+		// for (var i = 0; i < data.length; i++) {
+		// categories.push(data[i].date);
+		// openObj.data.push(smr.checkNumber(data[i].uniqueOpens.rate));
+		// clickObj.data.push(smr.checkNumber(data[i].uniqueClicks.rate));
+		// deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
+		// failedObj.data.push(smr.checkNumber(data[i].failed.count));
+		// }
+		// }
+>>>>>>> FETCH_HEAD
 		// the first chart
 		var fstChart = new Highcharts.Chart({
 			chart : {

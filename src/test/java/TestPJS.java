@@ -55,17 +55,17 @@ public class TestPJS {
             String reportName = "TEST";
             //
             String imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/batchsummary.png";
-            String jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/batchsummary.json";
+            String jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/batchsummary.json";
             String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
             //
             imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/transactionalsummary.png";
-            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/transactionalsummary.json";
+            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/transactionalsummary.json";
             reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
             //
             imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/progamsummary.png";
-            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/progamsummary.json";
+            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/progamsummary.json";
             reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
 

@@ -35,12 +35,17 @@ page.open(url + uri, function() {
 	obj.reportType = reportType;
 	page.includeJs(url + '/js/report.js', function() {
 		doReport(page, obj)
-		window.setTimeout(function() {
-			// console.log("--->go image")
-			page.render(imageName);
-			phantom.exit();
 
-		}, 3000);
+		waitFor(function() {
+			return page.evaluate(function() {
+				return $("#bodyPage").length > 0;
+			});
+		}, function() {
+			window.setTimeout(function() {
+				page.render(imageName);
+				phantom.exit();
+			}, 3000);
+		});
 
 	});
 });
@@ -52,3 +57,30 @@ function doReport(page, json) {
 		$("#reportTitle").html(json.title);
 	}, json);
 }
+
+function waitFor(testFx, onReady, timeOutMillis) {
+	var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 10001, // < Default
+	// Max
+	// Timeout
+	// is 3s
+	start = new Date().getTime(), condition = false, interval = setInterval(function() {
+		if ((new Date().getTime() - start < maxtimeOutMillis) && !condition) {
+			// If not time-out yet and condition not yet fulfilled
+			condition = (typeof (testFx) === "string" ? eval(testFx) : testFx()); // <
+			// defensive
+			// code
+		} else {
+			if (!condition) {
+				// If condition still not fulfilled (timeout but condition is
+				// 'false')
+				console.log("'waitFor()' timeout");
+				phantom.exit(1);
+			} else {
+				// Condition fulfilled (timeout and/or condition is 'true')
+				console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
+				typeof (onReady) === "string" ? eval(onReady) : onReady();
+				clearInterval(interval); // < Stop this interval
+			}
+		}
+	}, 100); // < repeat check every 100ms
+};

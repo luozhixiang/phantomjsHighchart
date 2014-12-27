@@ -156,7 +156,12 @@ function showSummaryChartPart(by, data, reportType) {
 				marginRight : 60,
 				spacingTop : 0,
 				spacingBottom : 6,
-				backgroundColor : 'rgba(0,0,0,0)'
+				backgroundColor : 'rgba(0,0,0,0)',
+				events : {
+					load : function() {
+						$("#bodyPage").attr("load", "true");
+					}
+				}
 			},
 			title : {
 				text : "Delivered & Failed",

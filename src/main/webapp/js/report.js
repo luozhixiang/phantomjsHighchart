@@ -42,7 +42,7 @@ function showSummaryChartPart(by, data, reportType) {
 		};
 
 		var categories = [];
-		if (reportType == smr.REPORT_TYPE.BATCH) {
+		if (reportType == 'BATCH') {
 			for (var i = 0; i < data.length; i++) {
 				categories.push(data[i].date);
 				openObj.data.push(smr.checkNumber(data[i].opens.uniqueRate));

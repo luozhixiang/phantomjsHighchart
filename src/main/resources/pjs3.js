@@ -11,7 +11,7 @@ page.viewportSize = {
 };
 
 var fs = require('fs');
-var content = fs.read("/Users/south/Downloads/batchsummary.json");
+var content = fs.read("/Users/south/Downloads/progamsummary.json");
 var obj = JSON.parse(content);
 
 page.open(url + uri, function() {
@@ -31,6 +31,6 @@ page.open(url + uri, function() {
 function doReport(page, json) {
 	page.evaluate(function(json) {
 		showSummaryChartPart('day', json.items[0].data);
-		showBottomSummaryPart('day', json.items[0].summary)
+		showBottomSummaryPart('day', json.items[0].summary, 'Batch')
 	}, json);
 }

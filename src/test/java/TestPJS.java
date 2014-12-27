@@ -49,8 +49,8 @@ public class TestPJS {
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
             String visitUri = "/";
             String imageSavePath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/a.png";
-            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/batchsummary.json";
-            String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
+            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/progamsummary.json";
+            String reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
             // Transactional : Transactional Mailing Report :<Report Name>
             // Program :Lifecycle Program Report :<Reprort Name>
             // Batch : Batch Mailing Report : <Report Name>

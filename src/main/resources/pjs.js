@@ -15,7 +15,7 @@ page.viewportSize = {
 var fs = require('fs');
 var content = fs.read(json);
 var obj = JSON.parse(content);
-console.log(reportName+"cccc")
+console.log(reportName + "cccc")
 page.open(url + uri, function() {
 	// Transactional : Transactional Mailing Report :<Report Name>
 	// Program :Lifecycle Program Report :<Reprort Name>
@@ -26,12 +26,13 @@ page.open(url + uri, function() {
 		title = ("Batch : Batch Mailing Report :" + reportName);
 	}
 	if (reportType == "TRANSACTIONAL") {
-		title = ("Program :Lifecycle Program Report :" + reportName);
+		title = ("Transactional : Transactional Mailing Report :" + reportName);
 	}
 	if (reportType == "PROGRAM") {
 		title = ("Program :Lifecycle Program Report :" + reportName);
 	}
 	obj.title = title;
+	obj.reportType = reportType;
 	page.includeJs(url + '/js/report.js', function() {
 		doReport(page, obj)
 		window.setTimeout(function() {
@@ -47,7 +48,7 @@ page.open(url + uri, function() {
 function doReport(page, json) {
 	page.evaluate(function(json) {
 		showSummaryChartPart('day', json.items[0].data);
-		showBottomSummaryPart('day', json.items[0].summary);
+		showBottomSummaryPart('day', json.items[0].summary, json.reportType);
 		$("#reportTitle").html(json.title);
 	}, json);
 }

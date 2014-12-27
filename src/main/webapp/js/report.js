@@ -244,10 +244,9 @@ function showSummaryChartPart(by, data) {
 	}
 }
 
-function showBottomSummaryPart(by, data) {
+function showBottomSummaryPart(by, data, reportType) {
 	var view = this;
 	var $e = $("#bodyPage");
-	var reportType = 'batch';
 	var $summary = $e.find(".sectionOverviewSummary-summary");
 	var $table = $summary.find("table");
 	var $funnel = $e.find(".sectionOverviewSummary-funnel");
@@ -350,34 +349,34 @@ function showBottomSummaryPart(by, data) {
 }
 
 // --------- Helper Functions ---------- //
-function drawBar($table,metric){
-	var $tr = $table.find("tr[data-metric='"+metric.name+"']");
+function drawBar($table, metric) {
+	var $tr = $table.find("tr[data-metric='" + metric.name + "']");
 	var $bar = $tr.find(".funnel-bar .bar");
 	$bar.append("<canvas width=0 height=0 ></canvas>");
-	$bar.css("width","100%");
+	$bar.css("width", "100%");
 	var gtx = brite.gtx($bar.find("canvas"));
 	gtx.fitParent();
 	var width = gtx.canvas().width;
 	var height = gtx.canvas().height;
 	var gradient = gtx.createLinearGradient(0, 5, width, 5);
-    gradient.addColorStop(0.0, "#6694bd");
-    gradient.addColorStop(0.5, "#6694bd");
-    gradient.addColorStop(1.00, "#6694bd");
-    var maxLeft = 1;
-    var left1 = width * (1 - metric.value2/100) / 2;
-    var left2 = width * (1 - metric.value/100) / 2;
-    if(left1 > width - 1 - left1 ){
-    	left1 = width/2 - maxLeft;
-    }
-    if(left2 > width - 1 - left2 ){
-    	left2 = width/2 - maxLeft;
-    }
+	gradient.addColorStop(0.0, "#6694bd");
+	gradient.addColorStop(0.5, "#6694bd");
+	gradient.addColorStop(1.00, "#6694bd");
+	var maxLeft = 1;
+	var left1 = width * (1 - metric.value2 / 100) / 2;
+	var left2 = width * (1 - metric.value / 100) / 2;
+	if (left1 > width - 1 - left1) {
+		left1 = width / 2 - maxLeft;
+	}
+	if (left2 > width - 1 - left2) {
+		left2 = width / 2 - maxLeft;
+	}
 
 	gtx.beginPath();
 	gtx.moveTo(left1, 1);
-	gtx.lineTo(left2, height-1);
-	gtx.lineTo(width - 1 - left2 ,height-1);
-	gtx.lineTo(width - 1 - left1 ,1);
+	gtx.lineTo(left2, height - 1);
+	gtx.lineTo(width - 1 - left2, height - 1);
+	gtx.lineTo(width - 1 - left1, 1);
 	gtx.closePath();
 	gtx.fillStyle(gradient);
 	gtx.lineWidth(2);
@@ -663,13 +662,21 @@ function getTableData(data, reportType) {
 			} else {
 				if (reportType == smr.REPORT_TYPE.BATCH) {
 					obj = data[objName];
-					summaryObj.count = smr.formatNumber(obj.unique);
-					summaryObj.value = smr.checkNumber(obj.uniqueRate);
+					if (obj && obj.unique) {
+						summaryObj.count = smr.formatNumber(obj.unique);
+					}
+					if (obj && obj.uniqueRate) {
+						summaryObj.value = smr.checkNumber(obj.uniqueRate);
+					}
 				} else {
 					var uName = "unique" + objName.substring(0, 1).toUpperCase() + objName.substring(1);
 					obj = data[uName];
-					summaryObj.count = smr.formatNumber(obj.count);
-					summaryObj.value = smr.checkNumber(obj.rate);
+					if (obj && obj.count) {
+						summaryObj.count = smr.formatNumber(obj.count);
+					}
+					if (obj && obj.rate) {
+						summaryObj.value = smr.checkNumber(obj.rate);
+					}
 				}
 			}
 		} else {
@@ -702,16 +709,16 @@ function getTableData(data, reportType) {
 	return tableData;
 }
 //
-//$(function() {
-//	var json = "getBatchSummary-breakdownbyday1.jso";
-//	app.ajaxRequest(app.host + "/getReportData", {
-//		json : json
-//	}, "POST").pipe(function(val) {
-//		console.log(val)
-//		if (val.success == true) {
-//			showSummaryChartPart('day', val.result.items[0].data);
-//			showBottomSummaryPart('day', val.result.items[0].summary)
-//		} else {
-//		}
-//	});
-//})
+// $(function() {
+// var json = "getBatchSummary-breakdownbyday1.jso";
+// app.ajaxRequest(app.host + "/getReportData", {
+// json : json
+// }, "POST").pipe(function(val) {
+// console.log(val)
+// if (val.success == true) {
+// showSummaryChartPart('day', val.result.items[0].data);
+// showBottomSummaryPart('day', val.result.items[0].summary)
+// } else {
+// }
+// });
+// })

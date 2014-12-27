@@ -45,6 +45,7 @@
   </head>
 
   <body>
+  <h4 id="reportTitle" style="padding-left:10px"><Report Name></h4>
   	<div id="bodyPage" class="sectionOverview">
   	<div class="sectionOverviewSummary">
 		<div class="sectionOverviewSummary-chart">

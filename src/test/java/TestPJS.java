@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TestPJS {
     public String exportChart(String phantomjsPath, String pjsPath, String url, String uri, String imageSavePath,
-                            String jsonPath) {
+                            String jsonPath, String reportType, String reportName) {
         List<String> paramList = new LinkedList<String>();
         paramList.add(phantomjsPath);
         paramList.add(pjsPath);
@@ -13,6 +13,8 @@ public class TestPJS {
         paramList.add(uri);// 2
         paramList.add(imageSavePath);// 3
         paramList.add(jsonPath);// 4
+        paramList.add(reportType);// 5
+        paramList.add(reportName);// 6
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);
@@ -47,9 +49,14 @@ public class TestPJS {
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
             String visitUri = "/";
             String imageSavePath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/a.png";
-            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/getBatchSummary-breakdownbyday1.jso";
+            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/batchsummary.json";
+            String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
+            // Transactional : Transactional Mailing Report :<Report Name>
+            // Program :Lifecycle Program Report :<Reprort Name>
+            // Batch : Batch Mailing Report : <Report Name>
+            String reportName = "TEST";
             //
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
         } catch (Exception e) {
             e.printStackTrace();
         }

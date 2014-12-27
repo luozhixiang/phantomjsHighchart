@@ -1,4 +1,4 @@
-function showSummaryChartPart(by, data) {
+function showSummaryChartPart(by, data, reportType) {
 	console.log(data)
 	var $e = $("#bodyPage");
 	var $container = $e.find(".sectionOverviewSummary-chart .chart-content");
@@ -42,23 +42,23 @@ function showSummaryChartPart(by, data) {
 		};
 
 		var categories = [];
-		// if (view.reportType == smr.REPORT_TYPE.BATCH) {
-		for (var i = 0; i < data.length; i++) {
-			categories.push(data[i].date);
-			openObj.data.push(smr.checkNumber(data[i].opens.uniqueRate));
-			clickObj.data.push(smr.checkNumber(data[i].clicks.uniqueRate));
-			deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
-			failedObj.data.push(smr.checkNumber(data[i].failed.count));
+		if (reportType == smr.REPORT_TYPE.BATCH) {
+			for (var i = 0; i < data.length; i++) {
+				categories.push(data[i].date);
+				openObj.data.push(smr.checkNumber(data[i].opens.uniqueRate));
+				clickObj.data.push(smr.checkNumber(data[i].clicks.uniqueRate));
+				deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
+				failedObj.data.push(smr.checkNumber(data[i].failed.count));
+			}
+		} else {
+			for (var i = 0; i < data.length; i++) {
+				categories.push(data[i].date);
+				openObj.data.push(smr.checkNumber(data[i].uniqueOpens.rate));
+				clickObj.data.push(smr.checkNumber(data[i].uniqueClicks.rate));
+				deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
+				failedObj.data.push(smr.checkNumber(data[i].failed.count));
+			}
 		}
-		// } else {
-		// for (var i = 0; i < data.length; i++) {
-		// categories.push(data[i].date);
-		// openObj.data.push(smr.checkNumber(data[i].uniqueOpens.rate));
-		// clickObj.data.push(smr.checkNumber(data[i].uniqueClicks.rate));
-		// deliveredObj.data.push(smr.checkNumber(data[i].delivered.count));
-		// failedObj.data.push(smr.checkNumber(data[i].failed.count));
-		// }
-		// }
 		// the first chart
 		var fstChart = new Highcharts.Chart({
 			chart : {

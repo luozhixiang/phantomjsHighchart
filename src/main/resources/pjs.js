@@ -47,7 +47,7 @@ page.open(url + uri, function() {
 
 function doReport(page, json) {
 	page.evaluate(function(json) {
-		showSummaryChartPart('day', json.items[0].data);
+		showSummaryChartPart('day', json.items[0].data, json.reportType);
 		showBottomSummaryPart('day', json.items[0].summary, json.reportType);
 		$("#reportTitle").html(json.title);
 	}, json);

@@ -701,17 +701,17 @@ function getTableData(data, reportType) {
 	}
 	return tableData;
 }
-
-$(function() {
-	var json = "getBatchSummary-breakdownbyday1.jso";
-	app.ajaxRequest(app.host + "/getReportData", {
-		json : json
-	}, "POST").pipe(function(val) {
-		console.log(val)
-		if (val.success == true) {
-			showSummaryChartPart('day', val.result.items[0].data);
-			showBottomSummaryPart('day', val.result.items[0].summary)
-		} else {
-		}
-	});
-})
+//
+//$(function() {
+//	var json = "getBatchSummary-breakdownbyday1.jso";
+//	app.ajaxRequest(app.host + "/getReportData", {
+//		json : json
+//	}, "POST").pipe(function(val) {
+//		console.log(val)
+//		if (val.success == true) {
+//			showSummaryChartPart('day', val.result.items[0].data);
+//			showBottomSummaryPart('day', val.result.items[0].summary)
+//		} else {
+//		}
+//	});
+//})

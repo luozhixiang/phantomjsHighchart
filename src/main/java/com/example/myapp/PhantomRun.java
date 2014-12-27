@@ -9,23 +9,21 @@ import java.util.List;
 public class PhantomRun {
     private Process process = null;
 
-//    String phantomjsPath = "/Users/south/WORK/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
-//    String jsFilePath = "resources/overview-summary-all.js";
-//    String url = "http://localhost:8081/index-dev.html";
-//    String reportType = "BATCH";
-//    phantomRun.exportChart(phantomjsPath, jsFilePath, url, reportType);
-    
+    // String phantomjsPath = "/Users/south/WORK/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
+    // String jsFilePath = "resources/overview-summary-all.js";
+    // String url = "http://localhost:8081/index-dev.html";
+    // String reportType = "BATCH";
+    // phantomRun.exportChart(phantomjsPath, jsFilePath, url, reportType);
+
     public String exportChart(String phantomjsPath, String jsFilePath, String url, String uri, String imageSavePath,
-                            String reportType) {
+                            String jsonPath) {
         List<String> paramList = new LinkedList<String>();
         paramList.add(phantomjsPath);
         paramList.add(jsFilePath);
-        paramList.add(url);//1
-        paramList.add(uri);//2
-        paramList.add(imageSavePath);//3
-        if (reportType != null) {
-            paramList.add(reportType);//4
-        }
+        paramList.add(url);// 1
+        paramList.add(uri);// 2
+        paramList.add(imageSavePath);// 3
+        paramList.add(jsonPath);// 4
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);

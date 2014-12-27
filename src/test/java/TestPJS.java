@@ -42,21 +42,33 @@ public class TestPJS {
         return stringBuilder.toString();
     }
 
+    // Transactional : Transactional Mailing Report :<Report Name>
+    // Program :Lifecycle Program Report :<Reprort Name>
+    // Batch : Batch Mailing Report : <Report Name>
     public static void main(String[] args) {
         try {
-            String phantomjsPath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
-            String pjsPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/pjs.js";
+            String path = "/Users/luo/WORK";
+            String phantomjsPath = path + "/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
+            String pjsPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/pjs.js";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
             String visitUri = "/";
-            String imageSavePath = "/Users/luo/WORK/tool/phantomjs-1.9.8-macosx/bin/a.png";
-            String jsonPath = "/Users/luo/WORK/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/transactionalsummary.json";
-            String reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
-            // Transactional : Transactional Mailing Report :<Report Name>
-            // Program :Lifecycle Program Report :<Reprort Name>
-            // Batch : Batch Mailing Report : <Report Name>
             String reportName = "TEST";
             //
+            String imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/batchsummary.png";
+            String jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/batchsummary.json";
+            String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+            //
+            imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/transactionalsummary.png";
+            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/transactionalsummary.json";
+            reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+            //
+            imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/progamsummary.png";
+            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/progamsummary.json";
+            reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

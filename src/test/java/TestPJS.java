@@ -47,25 +47,36 @@ public class TestPJS {
     // Batch : Batch Mailing Report : <Report Name>
     public static void main(String[] args) {
         try {
+            //for luo
             String path = "/Users/luo/WORK";
+            String projectPath = "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart";
             String phantomjsPath = path + "/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
-            String pjsPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/pjs.js";
+            String dataPath = path + projectPath + "/src/main/resources/2";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
+            
+            //for gao
+//            String path = "/Users/bin_gao/Documents/workspace-4";
+//            String projectPath = "/phantomjsHighchart";
+//            String phantomjsPath = "/usr/local/bin/phantomjs";
+//            String dataPath = path + projectPath + "/src/main/resources/2";
+//            String visitAddress = "http://localhost:8080/";
+            
+            String pjsPath = path + projectPath + "/src/main/resources/pjs.js";
             String visitUri = "/";
             String reportName = "TEST";
             //
-            String imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/batchsummary.png";
-            String jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/batchsummary.json";
+            String imageSavePath = path + projectPath + "/src/main/resources/0batchsummary.png";
+            String jsonPath = dataPath + "/batchsummary.json";
             String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
             //
-            imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/transactionalsummary.png";
-            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/transactionalsummary.json";
+            imageSavePath = path + projectPath + "/src/main/resources/0transactionalsummary.png";
+            jsonPath = dataPath + "/transactionalsummary.json";
             reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
             //
-            imageSavePath = path + "/tool/phantomjs-1.9.8-macosx/bin/progamsummary.png";
-            jsonPath = path + "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart/src/main/resources/2/progamsummary.json";
+            imageSavePath = path + projectPath + "/src/main/resources/0progamsummary.png";
+            jsonPath = dataPath + "/progamsummary.json";
             reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
             new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
 

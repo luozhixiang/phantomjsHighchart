@@ -15,7 +15,6 @@ page.viewportSize = {
 var fs = require('fs');
 var content = fs.read(json);
 var obj = JSON.parse(content);
-console.log(reportName + "cccc")
 page.open(url + uri, function() {
 	// Transactional : Transactional Mailing Report :<Report Name>
 	// Program :Lifecycle Program Report :<Reprort Name>
@@ -36,18 +35,20 @@ page.open(url + uri, function() {
 	page.includeJs(url + '/js/report.js', function() {
 		doReport(page, obj)
 
-		waitFor(function() {
-			return page.evaluate(function() {
-				return $("#bodyPage").attr("load") == "true";
-			});
-		}, function() {
-			window.setTimeout(function() {
-				page.render(imageName);
-				phantom.exit();
-			}, 3000);
-		});
+		// waitFor(function() {
+		// return page.evaluate(function() {
+		// return $("#bodyPage").attr("load") == "true";
+		// });
+		// }, function() {
+		//	
+		//		});
 
 	});
+	
+	window.setTimeout(function() {
+		page.render(imageName);
+		phantom.exit();
+	}, 8000);
 });
 
 function doReport(page, json) {

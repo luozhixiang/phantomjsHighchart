@@ -48,7 +48,7 @@ public class TestPJS {
     // Batch : Batch Mailing Report : <Report Name>
     public static void main(String[] args) {
         try {
-            boolean isPDF = true;
+            boolean isPDF = false;
             // for luo
             String path = "/Users/luo/WORK";
             String projectPath = "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart";

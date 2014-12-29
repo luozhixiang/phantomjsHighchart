@@ -34,7 +34,7 @@
 	<script type="text/javascript" src="${_r.contextPath}/js/smr.utils.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/highcharts.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/templates.js"></script>
-    
+	
     [#-- Global Initialization --] 
     <script type="text/javascript">
       // set the default to load the template

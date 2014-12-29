@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TestPJS {
     public String exportChart(String phantomjsPath, String pjsPath, String url, String uri, String imageSavePath,
-                            String jsonPath, String reportType, String reportName) {
+                            String jsonPath, String reportType, String reportName, boolean isPDF) {
         List<String> paramList = new LinkedList<String>();
         paramList.add(phantomjsPath);
         paramList.add(pjsPath);
@@ -15,6 +15,7 @@ public class TestPJS {
         paramList.add(jsonPath);// 4
         paramList.add(reportType);// 5
         paramList.add(reportName);// 6
+        paramList.add(isPDF + "");// 6
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);
@@ -47,20 +48,20 @@ public class TestPJS {
     // Batch : Batch Mailing Report : <Report Name>
     public static void main(String[] args) {
         try {
-            //for luo
+            boolean isPDF = true;
+            // for luo
             String path = "/Users/luo/WORK";
             String projectPath = "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart";
             String phantomjsPath = path + "/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
             String dataPath = path + projectPath + "/src/main/resources/2";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
-            
-            //for gao
-//            String path = "/Users/bin_gao/Documents/workspace-4";
-//            String projectPath = "/phantomjsHighchart";
-//            String phantomjsPath = "/usr/local/bin/phantomjs";
-//            String dataPath = path + projectPath + "/src/main/resources/2";
-//            String visitAddress = "http://localhost:8080/";
-            
+            // for gao
+            // String path = "/Users/bin_gao/Documents/workspace-4";
+            // String projectPath = "/phantomjsHighchart";
+            // String phantomjsPath = "/usr/local/bin/phantomjs";
+            // String dataPath = path + projectPath + "/src/main/resources/2";
+            // String visitAddress = "http://localhost:8080/";
+
             String pjsPath = path + projectPath + "/src/main/resources/pjs.js";
             String visitUri = "/";
             String reportName = "TEST";
@@ -68,17 +69,17 @@ public class TestPJS {
             String imageSavePath = path + projectPath + "/src/main/resources/0batchsummary.png";
             String jsonPath = dataPath + "/batchsummary.json";
             String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
             //
             imageSavePath = path + projectPath + "/src/main/resources/0transactionalsummary.png";
             jsonPath = dataPath + "/transactionalsummary.json";
             reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
             //
             imageSavePath = path + projectPath + "/src/main/resources/0progamsummary.png";
             jsonPath = dataPath + "/progamsummary.json";
             reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
 
         } catch (Exception e) {
             e.printStackTrace();

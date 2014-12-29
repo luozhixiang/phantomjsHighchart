@@ -1,4 +1,4 @@
-function showSummaryChartPart(by, data, reportType) {
+function showSummaryChartPart(by, data, reportType, isPDF) {
 	console.log(data)
 	var $e = $("#bodyPage");
 	var $container = $e.find(".sectionOverviewSummary-chart .chart-content");
@@ -7,6 +7,7 @@ function showSummaryChartPart(by, data, reportType) {
 		$container.append("<div class='noData'>No Data!</div>");
 	} else {
 		by = by || "day";
+		isPDF = ("true" == isPDF);
 
 		// clear container
 		$container.empty();
@@ -134,6 +135,11 @@ function showSummaryChartPart(by, data, reportType) {
 						lineColor : '#FFFFFF',
 						lineWidth : 2
 					}
+				},
+				series : {
+					lineWidth : isPDF ? -18 : 2,
+					shadow : false,
+					animation : false,
 				}
 			},
 			legend : {
@@ -230,6 +236,10 @@ function showSummaryChartPart(by, data, reportType) {
 				column : {
 					borderRadius : 2,
 					stacking : 'normal'
+				},
+				series : {
+					shadow : false,
+					animation : false
 				}
 			},
 			legend : {
@@ -713,6 +723,7 @@ function getTableData(data, reportType) {
 	}
 	return tableData;
 }
+
 //
 // $(function() {
 // var json = "getBatchSummary-breakdownbyday1.jso";

@@ -7,6 +7,7 @@ var imageName = system.args[3];
 var json = system.args[4];
 var reportType = system.args[5];
 var reportName = system.args[6];
+var isPDF = system.args[7];
 page.viewportSize = {
 	width : 1300,
 	height : 900
@@ -16,10 +17,6 @@ var fs = require('fs');
 var content = fs.read(json);
 var obj = JSON.parse(content);
 page.open(url + uri, function() {
-	// Transactional : Transactional Mailing Report :<Report Name>
-	// Program :Lifecycle Program Report :<Reprort Name>
-	// Batch : Batch Mailing Report : <Report Name>
-	// BATCH|TRANSACTIONAL|PROGRAM
 	var title = "";
 	if (reportType == "BATCH") {
 		title = ("Batch : Batch Mailing Report :" + reportName);
@@ -32,56 +29,33 @@ page.open(url + uri, function() {
 	}
 	obj.title = title;
 	obj.reportType = reportType;
+	obj.isPDF = isPDF;
 	page.includeJs(url + '/js/report.js', function() {
 		doReport(page, obj)
-
-		// waitFor(function() {
-		// return page.evaluate(function() {
-		// return $("#bodyPage").attr("load") == "true";
-		// });
-		// }, function() {
-		//	
-		//		});
-
 	});
-	
+
 	window.setTimeout(function() {
-		page.render(imageName);
+		if (isPDF && isPDF == "true") {
+			page.paperSize = {
+				format : 'A4',
+				orientation : 'landscape',
+				margin : '1cm'
+			};
+			page.render(imageName + ".pdf", {
+				format : 'pdf',
+				quality : '100'
+			});
+		} else {
+			page.render(imageName);
+		}
 		phantom.exit();
-	}, 8000);
+	}, 3000);
 });
 
 function doReport(page, json) {
 	page.evaluate(function(json) {
-		showSummaryChartPart('day', json.items[0].data, json.reportType);
+		showSummaryChartPart('day', json.items[0].data, json.reportType, json.isPDF);
 		showBottomSummaryPart('day', json.items[0].summary, json.reportType);
 		$("#reportTitle").html(json.title);
 	}, json);
 }
-
-function waitFor(testFx, onReady, timeOutMillis) {
-	var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 10001, // < Default
-	// Max
-	// Timeout
-	// is 3s
-	start = new Date().getTime(), condition = false, interval = setInterval(function() {
-		if ((new Date().getTime() - start < maxtimeOutMillis) && !condition) {
-			// If not time-out yet and condition not yet fulfilled
-			condition = (typeof (testFx) === "string" ? eval(testFx) : testFx()); // <
-			// defensive
-			// code
-		} else {
-			if (!condition) {
-				// If condition still not fulfilled (timeout but condition is
-				// 'false')
-				console.log("'waitFor()' timeout");
-				phantom.exit(1);
-			} else {
-				// Condition fulfilled (timeout and/or condition is 'true')
-				console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
-				typeof (onReady) === "string" ? eval(onReady) : onReady();
-				clearInterval(interval); // < Stop this interval
-			}
-		}
-	}, 100); // < repeat check every 100ms
-};

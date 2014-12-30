@@ -5,7 +5,8 @@ import java.util.List;
 
 public class TestPJS {
     public String exportChart(String phantomjsPath, String pjsPath, String url, String uri, String imageSavePath,
-                            String jsonPath, String reportType, String reportName, boolean isPDF) {
+                            String jsonPath, String reportType, String reportName, String pdfSavePath,
+                            String conversionCurrency, boolean conversionEnabled) {
         List<String> paramList = new LinkedList<String>();
         paramList.add(phantomjsPath);
         paramList.add(pjsPath);
@@ -15,7 +16,9 @@ public class TestPJS {
         paramList.add(jsonPath);// 4
         paramList.add(reportType);// 5
         paramList.add(reportName);// 6
-        paramList.add(isPDF + "");// 6
+        paramList.add(pdfSavePath);// 7
+        paramList.add(conversionCurrency);// 8
+        paramList.add(conversionEnabled + "");// 9
 
         StringBuilder stringBuilder = null;
         String[] parameters = paramList.toArray(new String[paramList.size()]);
@@ -48,13 +51,13 @@ public class TestPJS {
     // Batch : Batch Mailing Report : <Report Name>
     public static void main(String[] args) {
         try {
-            boolean isPDF = false;
             // for luo
             String path = "/Users/luo/WORK";
             String projectPath = "/workspace_snow/luo/phantomjsHighchart/phantomjsHighchart";
             String phantomjsPath = path + "/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
             String dataPath = path + projectPath + "/src/main/resources/2";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
+            
             // for gao
             // String path = "/Users/bin_gao/Documents/workspace-4";
             // String projectPath = "/phantomjsHighchart";
@@ -66,20 +69,25 @@ public class TestPJS {
             String visitUri = "/";
             String reportName = "TEST";
             //
+            String conversionCurrency = "$";
+            boolean conversionEnabled = true;
             String imageSavePath = path + projectPath + "/src/main/resources/0batchsummary.png";
+            String pdfSavePath = path + projectPath + "/src/main/resources/0batchsummary.pdf";
             String jsonPath = dataPath + "/batchsummary.json";
             String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled);
             //
             imageSavePath = path + projectPath + "/src/main/resources/0transactionalsummary.png";
+            pdfSavePath = path + projectPath + "/src/main/resources/0transactionalsummary.pdf";
             jsonPath = dataPath + "/transactionalsummary.json";
             reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled);
             //
             imageSavePath = path + projectPath + "/src/main/resources/0progamsummary.png";
+            pdfSavePath = path + projectPath + "/src/main/resources/0progamsummary.pdf";
             jsonPath = dataPath + "/progamsummary.json";
             reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, isPDF);
+            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled);
 
         } catch (Exception e) {
             e.printStackTrace();

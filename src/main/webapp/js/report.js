@@ -734,16 +734,16 @@ function getTableData(data, reportType, conversionEnabled) {
 }
 
 //
- $(function() {
- var json = "transactionalsummary.json";
- app.ajaxRequest(app.host + "/getReportData", {
- json : json
- }, "POST").pipe(function(val) {
- console.log(val)
- if (val.success == true) {
- showSummaryChartPart('day', val.result.items[0].data,'TRANSACTIONAL');
- showBottomSummaryPart('day', val.result.items[0].summary,'TRANSACTIONAL')
- } else {
- }
- });
- })
+// $(function() {
+// var json = "transactionalsummary.json";
+// app.ajaxRequest(app.host + "/getReportData", {
+// json : json
+// }, "POST").pipe(function(val) {
+// console.log(val)
+// if (val.success == true) {
+// showSummaryChartPart('day', val.result.items[0].data,'TRANSACTIONAL');
+// showBottomSummaryPart('day', val.result.items[0].summary,'TRANSACTIONAL')
+// } else {
+// }
+// });
+// })

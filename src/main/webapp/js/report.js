@@ -281,6 +281,15 @@ function showBottomSummaryPart(by, data, reportType,conversionCurrency, conversi
 		var barValues = [];
 		for (var i = 0; i < tableData.length; i++) {
 			var summaryObj = tableData[i];
+			if (!summaryObj.count||summaryObj.count=="") {
+				summaryObj.count = 0;
+			}
+			if (!summaryObj.value||summaryObj.value=="") {
+				summaryObj.value = 0;
+			}
+			if (!summaryObj.rate||summaryObj.rate=="") {
+				summaryObj.rate = "0%";
+			}
 			if (!barBreak && !summaryObj.isBar) {
 				var $tr = smr.render("tmpl-sectionOverviewSummary-summary-breakTr-tr", {});
 				$table.append($tr);
@@ -346,6 +355,7 @@ function showBottomSummaryPart(by, data, reportType,conversionCurrency, conversi
 
 		if (brite.ua.hasCanvas()) {
 			for (var i = 0; i < barValues.length; i++) {
+				console.log(barValues[i])
 				// if(i + 1 == barValues.length){
 				// barValues[i].value2 = 0;
 				// }else{
@@ -724,16 +734,16 @@ function getTableData(data, reportType, conversionEnabled) {
 }
 
 //
-// $(function() {
-// var json = "getBatchSummary-breakdownbyday1.jso";
-// app.ajaxRequest(app.host + "/getReportData", {
-// json : json
-// }, "POST").pipe(function(val) {
-// console.log(val)
-// if (val.success == true) {
-// showSummaryChartPart('day', val.result.items[0].data);
-// showBottomSummaryPart('day', val.result.items[0].summary)
-// } else {
-// }
-// });
-// })
+ $(function() {
+ var json = "transactionalsummary.json";
+ app.ajaxRequest(app.host + "/getReportData", {
+ json : json
+ }, "POST").pipe(function(val) {
+ console.log(val)
+ if (val.success == true) {
+ showSummaryChartPart('day', val.result.items[0].data,'TRANSACTIONAL');
+ showBottomSummaryPart('day', val.result.items[0].summary,'TRANSACTIONAL')
+ } else {
+ }
+ });
+ })

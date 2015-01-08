@@ -58,7 +58,7 @@ public class TestPJS {
             String phantomjsPath = path + "/tool/phantomjs-1.9.8-macosx/bin/phantomjs";
             String dataPath = path + projectPath + "/src/main/resources/2";
             String visitAddress = "http://localhost:8080/phantomjs-highchart";
-
+     
             // for gao
             // String path = "/Users/bin_gao/Documents/workspace-4";
             // String projectPath = "/phantomjsHighchart";

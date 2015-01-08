@@ -10,6 +10,7 @@ var reportName = system.args[6];
 var pdfName = system.args[7];
 var conversionCurrency = system.args[8];
 var conversionEnabled = system.args[9];
+var breakDownBy = system.args[10];
 
 phantom.onError = function(msg, trace) {
  	var msgStack = ['PHANTOM ERROR: ' + msg];
@@ -45,6 +46,9 @@ page.open(url + uri, function() {
 	}
 	obj.title = title;
 	obj.reportType = reportType;
+	if (!obj.breakDownBy||obj.breakDownBy=="") {
+		obj.breakDownBy = breakDownBy;		
+	}
 	obj.conversionEnabled = (typeof conversionCurrency !== "undefined" && conversionCurrency !== null) ? conversionEnabled : "true";
 	obj.conversionCurrency =  (typeof conversionCurrency !== "undefined" && conversionCurrency !== null) ? conversionCurrency : "$";
 	page.includeJs(url + '/js/report.js', function() {
@@ -68,14 +72,18 @@ page.open(url + uri, function() {
 		}
 		console.log("SUCCESS");
 		phantom.exit();
-	}, 6000);
+	}, 3000);
 
 });
 
 function doReport(page, json) {
 	page.evaluate(function(json) {
-		showSummaryChartPart('day', json.items[0].data, json.reportType);
-		showBottomSummaryPart('day', json.items[0].summary, json.reportType, json.conversionCurrency,json.conversionEnabled);
+		 var by = json.breakDownBy;
+		 if (!by) {
+			by = 'day';
+		}
+		showSummaryChartPart(by, json.items[0].data, json.reportType);
+		showBottomSummaryPart(by, json.items[0].summary, json.reportType, json.conversionCurrency,json.conversionEnabled);
 		$("#reportTitle").html(json.title);
 	}, json);
 }

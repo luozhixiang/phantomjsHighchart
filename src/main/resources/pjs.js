@@ -11,6 +11,8 @@ var pdfName = system.args[7];
 var conversionCurrency = system.args[8];
 var conversionEnabled = system.args[9];
 var breakDownBy = system.args[10];
+var showClicks = system.args[11];
+var showOpens = system.args[12];
 
 phantom.onError = function(msg, trace) {
  	var msgStack = ['PHANTOM ERROR: ' + msg];
@@ -49,6 +51,12 @@ page.open(url + uri, function() {
 	if (!obj.breakDownBy||obj.breakDownBy=="") {
 		obj.breakDownBy = breakDownBy;		
 	}
+	if (!obj.showOpens||obj.showOpens=="") {
+		obj.showOpens = showOpens;		
+	}
+	if (!obj.showClicks||obj.showClicks=="") {
+		obj.showClicks = showClicks;		
+	}
 	obj.conversionEnabled = (typeof conversionCurrency !== "undefined" && conversionCurrency !== null) ? conversionEnabled : "true";
 	obj.conversionCurrency =  (typeof conversionCurrency !== "undefined" && conversionCurrency !== null) ? conversionCurrency : "$";
 	page.includeJs(url + '/js/report.js', function() {
@@ -82,7 +90,7 @@ function doReport(page, json) {
 		 if (!by) {
 			by = 'day';
 		}
-		showSummaryChartPart(by, json.items[0].data, json.reportType);
+		showSummaryChartPart(by, json.items[0].data, json.reportType,json.showClicks,json.showOpens);
 		showBottomSummaryPart(by, json.items[0].summary, json.reportType, json.conversionCurrency,json.conversionEnabled);
 		$("#reportTitle").html(json.title);
 	}, json);

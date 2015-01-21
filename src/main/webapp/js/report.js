@@ -1,4 +1,4 @@
-function showSummaryChartPart(by, data, reportType,showClicks,showOpens) {
+function showSummaryChartPart(by, data, reportType) {
 	console.log(data)
 	var $e = $("#bodyPage");
 	var $container = $e.find(".sectionOverviewSummary-chart .chart-content");
@@ -7,7 +7,6 @@ function showSummaryChartPart(by, data, reportType,showClicks,showOpens) {
 		$container.append("<div class='noData'>No Data!</div>");
 	} else {
 		by = by || "day";
-
 		// clear container
 		$container.empty();
 		$container.append("<div class='fstCon'></div><div class='secCon'></div>");
@@ -150,6 +149,9 @@ function showSummaryChartPart(by, data, reportType,showClicks,showOpens) {
 			series : [ openObj, clickObj ]
 		});
 
+		 var series = fstChart.series[0];
+		 series.hide();
+		
 		// the second chart
 		var secChart = new Highcharts.Chart({
 			chart : {
@@ -254,15 +256,8 @@ function showSummaryChartPart(by, data, reportType,showClicks,showOpens) {
 		// view.showView(view.viewName, _viewBy);
 		// view.reDraw = true;
 		// }
-		//showOpens&showClicks
-		if (showOpens==false||showOpens=="false") {
-			var series = fstChart.series[0];
-			series.hide();	
-		}
-		if (showClicks==false||showClicks=="false") {
-			var series = fstChart.series[1];
-			series.hide();
-		}
+		
+		$e.find("span[data-view='"+by+"']").addClass("selected")
 	}
 }
 
@@ -742,17 +737,17 @@ function getTableData(data, reportType, conversionEnabled) {
 	return tableData;
 }
 
-//
+////
 // $(function() {
-// var json = "transactionalsummary.json";
-// app.ajaxRequest(app.host + "/getReportData", {
-// json : json
-// }, "POST").pipe(function(val) {
-// console.log(val)
-// if (val.success == true) {
-// showSummaryChartPart('day', val.result.items[0].data,'TRANSACTIONAL');
-// showBottomSummaryPart('day', val.result.items[0].summary,'TRANSACTIONAL')
-// } else {
-// }
-// });
-// })
+//	var json = "batchsummary.json";
+//	app.ajaxRequest(app.host + "/getReportData", {
+//		json : json
+//	}, "POST").pipe(function(val) {
+//		console.log(val)
+//		if (val.success == true) {
+//			showSummaryChartPart('day', val.result.items[0].data, 'BATCH');
+//			showBottomSummaryPart('day', val.result.items[0].summary, 'BATCH')
+//		} else {
+//		}
+//	});
+//})

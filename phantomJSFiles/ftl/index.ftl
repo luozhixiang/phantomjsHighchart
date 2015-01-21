@@ -34,7 +34,10 @@
 	<script type="text/javascript" src="${_r.contextPath}/js/smr.utils.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/highcharts.js"></script>
 	<script type="text/javascript" src="${_r.contextPath}/js/templates.js"></script>
-    
+	
+	<script type="text/javascript" src="${_r.contextPath}/js/app.js"></script>
+	<script type="text/javascript" src="${_r.contextPath}/js/report.js"></script>
+	
     [#-- Global Initialization --] 
     <script type="text/javascript">
       // set the default to load the template
@@ -49,6 +52,13 @@
   	<div id="bodyPage" class="sectionOverview">
   	<div class="sectionOverviewSummary">
 		<div class="sectionOverviewSummary-chart">
+			<div class="viewBy head">
+				<span>View by </span>
+				<span class="SMA-REPORT-VIEWBYDAY action" data-view="day">Day</span>
+				<span class="SMA-REPORT-VIEWBYWEEK action " data-view="week">Week</span>
+				<span class="SMA-REPORT-VIEWBYMONTH action " data-view="month">Month</span>
+				<span class="SMA-REPORT-VIEWBYQUARTER action " data-view="quarter">Quarter</span>
+			</div>
 			<div class="chart-content"></div>
 		</div>
 		<div class="SMA-REPORT-ENGAGEMENTMETRICS sectionOverviewSummary-bottom funnel-chart">

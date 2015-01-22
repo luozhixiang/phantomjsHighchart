@@ -1,4 +1,4 @@
-function showSummaryChartPart(by, data, reportType) {
+function showSummaryChartPart(by, data, reportType,showClicks,showOpens) {
 	console.log(data)
 	var $e = $("#bodyPage");
 	var $container = $e.find(".sectionOverviewSummary-chart .chart-content");
@@ -149,9 +149,6 @@ function showSummaryChartPart(by, data, reportType) {
 			series : [ openObj, clickObj ]
 		});
 
-		 var series = fstChart.series[0];
-		 series.hide();
-		
 		// the second chart
 		var secChart = new Highcharts.Chart({
 			chart : {
@@ -256,6 +253,16 @@ function showSummaryChartPart(by, data, reportType) {
 		// view.showView(view.viewName, _viewBy);
 		// view.reDraw = true;
 		// }
+		
+		//showOpens&showClicks
+		if (showOpens==false||showOpens=="false") {
+			var series = fstChart.series[0];
+			series.hide();	
+		}
+		if (showClicks==false||showClicks=="false") {
+			var series = fstChart.series[1];
+			series.hide();
+		}
 		
 		$e.find("span[data-view='"+by+"']").addClass("selected")
 	}

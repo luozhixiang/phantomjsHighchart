@@ -71,47 +71,45 @@ public class TestPJS {
             String pjsPath = path + projectPath + "/src/main/resources/pjs.js";
             String visitUri = "/";
             String reportName = "TEST";
-            String breakDownBy = "day";
-            String showClicks = "true";
-            String showOpens = "true";
-            //
             String conversionCurrency = "$";
             boolean conversionEnabled = false;
-            String imageSavePath = path + projectPath + "/src/main/resources/export/0batchsummary.png";
-            String pdfSavePath = path + projectPath + "/src/main/resources/export/0batchsummary.pdf";
-            String jsonPath = dataPath + "/batchsummary.json";
-            String reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, "false", showOpens);
             //
-            imageSavePath = path + projectPath + "/src/main/resources/export/0transactionalsummary.png";
-            pdfSavePath = path + projectPath + "/src/main/resources/export/0transactionalsummary.pdf";
-            jsonPath = dataPath + "/transactionalsummary.json";
-            reportType = "TRANSACTIONAL";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, "false");
-            //
-            imageSavePath = path + projectPath + "/src/main/resources/export/0progamsummary.png";
-            pdfSavePath = path + projectPath + "/src/main/resources/export/0progamsummary.pdf";
-            jsonPath = dataPath + "/progamsummary.json";
-            reportType = "PROGRAM";// BATCH|TRANSACTIONAL|PROGRAM
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
-            //
-            dataPath = path + projectPath + "/src/main/resources/3";
-            reportType = "BATCH";// BATCH|TRANSACTIONAL|PROGRAM
-            //
-            imageSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_day.png";
-            pdfSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_day.pdf";
-            jsonPath = dataPath + "/getBatchSummary-breakdownbyday.jso";
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
-            //
-            imageSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_week.png";
-            pdfSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_week.pdf";
-            jsonPath = dataPath + "/getBatchSummary-breakdownbyweek.jso";
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
-            //
-            imageSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_month.png";
-            pdfSavePath = path + projectPath + "/src/main/resources/export/0batchsummary_month.pdf";
-            jsonPath = dataPath + "/getBatchSummary-breakdownbymonth.jso";
-            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
+            String[] breakDownByArr = new String[] { "day", "month", "week" };
+            String[] showClicksArr = new String[] { "true", "false" };
+            String[] showOpensArr = new String[] { "true", "false" };
+            String[][] reportTypeArrs = new String[][] { new String[] { "BATCH", "batchsummary.json" },
+                    new String[] { "TRANSACTIONAL", "transactionalsummary.json" },
+                    new String[] { "PROGRAM", "progamsummary.json" } };
+            for (int i = 0; i < breakDownByArr.length; i++) {
+                for (int j = 0; j < showClicksArr.length; j++) {
+                    for (int j2 = 0; j2 < showOpensArr.length; j2++) {
+                        for (int k = 0; k < reportTypeArrs.length; k++) {
+                            String breakDownBy = breakDownByArr[i];
+                            String showClicks = showClicksArr[j];
+                            String showOpens = showOpensArr[j2];
+                            //
+                            String[] reportTypeArr = reportTypeArrs[k];
+                            String reportType = reportTypeArr[0];
+                            String jsonPath = dataPath + "/" + reportTypeArr[1];
+                            String fileName = reportType + "_breakDownBy-"
+                                                    + breakDownBy
+                                                    + "_showClicks-"
+                                                    + showClicks
+                                                    + "_showOpens-"
+                                                    + showOpens;
+                            String imageSavePath = path + projectPath
+                                                    + "/src/main/resources/export/"
+                                                    + fileName
+                                                    + ".png";
+                            String pdfSavePath = path + projectPath + "/src/main/resources/export/" + fileName + ".pdf";
+                            //
+                            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
+                        }
+                    }
+                }
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

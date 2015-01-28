@@ -80,7 +80,7 @@ page.open(url + uri, function() {
 		}
 		console.log("SUCCESS");
 		phantom.exit();
-	}, 3000);
+	}, 2000);
 
 });
 

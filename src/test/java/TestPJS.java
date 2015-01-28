@@ -71,39 +71,53 @@ public class TestPJS {
             String pjsPath = path + projectPath + "/src/main/resources/pjs.js";
             String visitUri = "/";
             String reportName = "TEST";
-            String conversionCurrency = "$";
-            boolean conversionEnabled = false;
             //
             String[] breakDownByArr = new String[] { "day", "month", "week" };
             String[] showClicksArr = new String[] { "true", "false" };
             String[] showOpensArr = new String[] { "true", "false" };
+            String[] conversionCurrencyArr = new String[] { "$" };
+            String[] conversionEnabledArr = new String[] { "true", "false" };
             String[][] reportTypeArrs = new String[][] { new String[] { "BATCH", "batchsummary.json" },
                     new String[] { "TRANSACTIONAL", "transactionalsummary.json" },
                     new String[] { "PROGRAM", "progamsummary.json" } };
+            //
             for (int i = 0; i < breakDownByArr.length; i++) {
                 for (int j = 0; j < showClicksArr.length; j++) {
                     for (int j2 = 0; j2 < showOpensArr.length; j2++) {
                         for (int k = 0; k < reportTypeArrs.length; k++) {
-                            String breakDownBy = breakDownByArr[i];
-                            String showClicks = showClicksArr[j];
-                            String showOpens = showOpensArr[j2];
-                            //
-                            String[] reportTypeArr = reportTypeArrs[k];
-                            String reportType = reportTypeArr[0];
-                            String jsonPath = dataPath + "/" + reportTypeArr[1];
-                            String fileName = reportType + "_breakDownBy-"
-                                                    + breakDownBy
-                                                    + "_showClicks-"
-                                                    + showClicks
-                                                    + "_showOpens-"
-                                                    + showOpens;
-                            String imageSavePath = path + projectPath
-                                                    + "/src/main/resources/export/"
-                                                    + fileName
-                                                    + ".png";
-                            String pdfSavePath = path + projectPath + "/src/main/resources/export/" + fileName + ".pdf";
-                            //
-                            new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
+                            for (int k2 = 0; k2 < conversionCurrencyArr.length; k2++) {
+                                for (int l = 0; l < conversionEnabledArr.length; l++) {
+                                    String breakDownBy = breakDownByArr[i];
+                                    String showClicks = showClicksArr[j];
+                                    String showOpens = showOpensArr[j2];
+                                    String conversionCurrency = conversionCurrencyArr[k2];
+                                    boolean conversionEnabled = "true".equals(conversionEnabledArr[l]);
+                                    //
+                                    String[] reportTypeArr = reportTypeArrs[k];
+                                    String reportType = reportTypeArr[0];
+                                    String jsonPath = dataPath + "/" + reportTypeArr[1];
+                                    String fileName = reportType + "_breakDownBy-"
+                                                            + breakDownBy
+                                                            + "_showClicks-"
+                                                            + showClicks
+                                                            + "_showOpens-"
+                                                            + showOpens
+                                                            + "_conversionCurrency-"
+                                                            + conversionCurrency
+                                                            + "_conversionEnabled-"
+                                                            + conversionEnabled;
+                                    String imageSavePath = path + projectPath
+                                                            + "/src/main/resources/export/"
+                                                            + fileName
+                                                            + ".png";
+                                    String pdfSavePath = path + projectPath
+                                                            + "/src/main/resources/export/"
+                                                            + fileName
+                                                            + ".pdf";
+                                    //
+                                    new TestPJS().exportChart(phantomjsPath, pjsPath, visitAddress, visitUri, imageSavePath, jsonPath, reportType, reportName, pdfSavePath, conversionCurrency, conversionEnabled, breakDownBy, showClicks, showOpens);
+                                }
+                            }
                         }
                     }
                 }
